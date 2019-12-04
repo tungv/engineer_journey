@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "micro",
+    "dev": "micro-dev"
   },
   "keywords": [],
   "author": "",
@@ -14,6 +15,8 @@
     "microrouter": "^3.1.3"
   },
   "devDependencies": {
+    "got": "^9.6.0",
+    "jest": "^24.9.0",
     "micro-dev": "^3.0.0"
   }
 }
