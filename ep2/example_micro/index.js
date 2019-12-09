@@ -1,37 +1,20 @@
-const { send, json } = require("micro");
-const { router, get, put } = require("microrouter");
+const micro = require("micro");
+const { router, get, post } = require("microrouter");
 
-function withAuthentication(handler) {
-  return async function(req, res) {
-    if (req.headers.authentication === "Basic: 123") {
-      return handler(req, res);
-    }
-
-    send(res, 401, {
-      msg: "Please login",
-    });
+async function createUser(req, res) {
+  const data = await micro.json(req);
+  res.statusCode = 200;
+  return {
+    from: "micro-dev",
+    msg: "Hello " + data.name,
   };
 }
 
-function withBody(handler) {
-  return async function(req, res) {
-    const body = await json(req);
-    return handler(body, req, res);
-  };
-}
-
-async function api_1(body, req, res) {
-  send(res, 202, {
-    method: req.method,
-    body,
-  });
-}
-
-async function hello() {
-  return "hello";
+async function getAllUsers() {
+  return [{ name: "Tung" }, { name: "Ben" }];
 }
 
 module.exports = router(
-  get("/hello/*", withAuthentication(hello)),
-  put("/api_1", withBody(api_1)),
+  get("/api/users", getAllUsers),
+  post("/api/users", createUser),
 );
