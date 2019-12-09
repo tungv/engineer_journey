@@ -1,28 +1,33 @@
-const { createServer } = require("http");
+const http = require("http");
 
-const server = createServer((req, res) => {
-  console.log(req.method);
-  const buffer = [];
-  req.on("data", data => {
-    // data is a Buffer
-    buffer.push(String(data));
+const server = http.createServer(function(req, res) {
+  console.log(">> %s %s", req.method, req.url);
+
+  let content = "";
+  req.on("data", function(chunk) {
+    content += String(chunk);
   });
 
-  req.on("end", () => {
-    const data = buffer.join("");
-
-    res.end(JSON.stringify({ data: JSON.parse(data) }));
+  req.on("end", function() {
+    const data = JSON.parse(content);
+    res.statusCode = 201;
+    res.setHeader("content-type", "application/json");
+    res.end(
+      JSON.stringify({
+        from: "nodejs server",
+        msg: "Hello " + data.name,
+      }),
+    );
   });
 });
 
-server.listen(3000, err => {
+server.listen(3000, function(err) {
   if (err) {
-    // err.name
-    // 1. EACCES - cannot open because of user permission
-    // 2. EADDRINUSE - address in use
-    console.error(err);
-    return;
+    // EACCES: access denied
+    // EADDRINUSE: address in use
+    console.error("Cannot open port 3000", error.name);
+    process.exit(1);
   }
 
-  console.log("listening on port 3000");
+  console.log("Server is listening on port 3000…");
 });
