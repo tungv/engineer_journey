@@ -1,13 +1,9 @@
 {
-  "name": "server",
+  "name": "graphql-server-with-nodejs",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "jest"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "apollo-server-micro": "^2.9.15",
     "graphql": "^14.5.8",
