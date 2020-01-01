@@ -7,6 +7,8 @@ export default withApollo(
     new ApolloClient({
       uri: "http://localhost:4000/graphql",
       fetch,
-      cache: new InMemoryCache().restore(initialState || {}),
+      cache: new InMemoryCache({
+        dataIdFromObject: object => object.__typename + "_" + object.id,
+      }).restore(initialState || {}),
     }),
 );
