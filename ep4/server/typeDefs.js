@@ -1,6 +1,5 @@
-const { gql } = require("apollo-server-micro");
-
-module.exports = gql`
+// typeDefs.js
+module.exports = /* GraphQL */ `
   type Query {
     user(id: ID!): User
   }
