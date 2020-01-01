@@ -1,3 +1,4 @@
+// index.js
 const { ApolloServer } = require("apollo-server-micro");
 
 const typeDefs = require("./typeDefs");
