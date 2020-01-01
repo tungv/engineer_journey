@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "test": "jest",
-    "start": "micro"
+    "start": "micro",
+    "dev": "micro-dev -s"
   },
   "dependencies": {
     "apollo-server-micro": "^2.9.15",
