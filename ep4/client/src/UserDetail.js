@@ -1,6 +1,7 @@
 import { gql } from "apollo-boost";
 import { useQuery } from "@apollo/react-hooks";
 import React from "react";
+import Link from "next/link";
 
 import NewPost from "./NewPost";
 import Spinner from "./Spinner";
@@ -18,6 +19,17 @@ export default function UserDetail(props) {
 
   if (errors) {
     return <pre>{JSON.stringify(errors, null, 2)}</pre>;
+  }
+
+  if (!data.user) {
+    return (
+      <div>
+        User does not exist{" "}
+        <Link href="/">
+          <a>register here</a>
+        </Link>
+      </div>
+    );
   }
 
   return (
