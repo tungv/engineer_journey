@@ -1,0 +1,16 @@
+query {
+  me {
+    name
+    level
+    friends @defer {
+      name
+    }
+  }
+}
+
+mutation($name: String!) {
+  registerUser(name: $name) {
+    name
+    level
+  }
+}
