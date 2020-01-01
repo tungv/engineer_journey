@@ -2,7 +2,8 @@
   "name": "graphql-server-with-nodejs",
   "version": "1.0.0",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "micro"
   },
   "dependencies": {
     "apollo-server-micro": "^2.9.15",
